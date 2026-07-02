@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request
 import joblib
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
-model = joblib.load("models/best_model.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "models", "best_model.pkl")
+
+model = joblib.load(MODEL_PATH)
 
 @app.route("/")
 def home():
